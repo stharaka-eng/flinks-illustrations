@@ -1,0 +1,147 @@
+/*!
+ * Flinks – "Fraud detection" illustration. Production stylesheet: every rule is scoped under .flx-fraud-detection.
+ * Design frame 720 × 500 px, scaled as a whole by animation.js (--flx-s).
+ * Config custom properties: --flx-width, --flx-max-width, --flx-height, --flx-bg, --flx-font-family,
+ *   --flx-text, --flx-muted, --flx-accent, --flx-accent-soft, --flx-accent-dim, --flx-red, --flx-red-soft
+ */
+.flx-fraud-detection {
+  all: initial; --flx-s: 1; --flx-tx: 0px; --flx-ty: 0px;
+  display: block; position: relative; box-sizing: border-box;
+  width: var(--flx-width, 100%); max-width: var(--flx-max-width, 720px); height: var(--flx-height, auto);
+  aspect-ratio: 720 / 500; overflow: hidden; contain: layout paint style;
+  color: var(--flx-text, #1B1B3C);
+  font-family: var(--flx-font-family, 'Flinks Inter', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  line-height: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+.flx-fraud-detection:not([data-flx-ready]) { visibility: hidden; }
+/* Defensive baseline: neutralises generic host rules ("* {letter-spacing}", "div {border}", "span {display:block}" …).
+   Component rules below have higher specificity and re-apply the real values. */
+.flx-fraud-detection *, .flx-fraud-detection *::before, .flx-fraud-detection *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0 solid transparent; outline: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; word-spacing: normal; text-transform: none; text-shadow: none; text-decoration: none;
+  transition: none; animation: none;
+}
+.flx-fraud-detection div, .flx-fraud-detection p { display: block; }
+.flx-fraud-detection span, .flx-fraud-detection strong, .flx-fraud-detection em, .flx-fraud-detection b { display: inline; }
+.flx-fraud-detection b, .flx-fraud-detection strong { font-weight: 700; }   /* restore UA emphasis removed by the reset (component rules override where needed) */
+.flx-fraud-detection em { font-style: italic; }
+.flx-fraud-detection svg { display: block; max-width: none; max-height: none; }
+.flx-fraud-detection .flx-scaler { position: absolute; left: 0; top: 0; width: 720px; height: 500px; transform-origin: 0 0; transform: translate(var(--flx-tx), var(--flx-ty)) scale(var(--flx-s)); }
+.flx-fraud-detection .flx-stage { position: relative; width: 720px; height: 500px; border-radius: 24px; overflow: hidden; color: var(--flx-text, #1B1B3C); background: var(--flx-bg, #EAFAFF); }
+.flx-fraud-detection.is-static *, .flx-fraud-detection.is-static *::before { transition: none !important; animation: none !important; }
+
+/* ---- component ---- */
+.flx-fraud-detection .flx-canvas { position:absolute; left:0; top:0; width:720px; height:500px; transform:scale(1.00000); transform-origin:0 0; }
+.flx-fraud-detection svg.flx-i { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.flx-fraud-detection .flx-abs { position:absolute; }
+.flx-fraud-detection .flx-gb { padding:var(--flx-gb-w,4px); border-radius:var(--flx-gb-outer,24px); background:var(--flx-gb-gradient,linear-gradient(160deg, #8FD6F2 0%, #DDF3FB 45%, #A9DFF5 100%)); box-shadow:var(--flx-gb-shadow,0 26px 54px -18px rgba(0,172,228,.38), 0 4px 14px rgba(27,27,60,.06)); }
+.flx-fraud-detection .flx-in { position:relative; overflow:hidden; border-radius:var(--flx-gb-inner,20px); }
+.flx-fraud-detection .flx-in.flx-light { background:var(--flx-white,#FFFFFF); }
+.flx-fraud-detection .flx-in.flx-dark { background:var(--flx-text,#1B1B3C); color:#fff; }
+.flx-fraud-detection .flx-in.flx-code { background:var(--flx-code-bg,#11132A); color:var(--flx-code-text,#E6E9F5); }
+.flx-fraud-detection .flx-badge { width:38px; height:38px; border-radius:50%; background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-fraud-detection .flx-badge svg { width:20px; height:20px; }
+.flx-fraud-detection .flx-pill { display:inline-flex; align-items:center; font-weight:600; font-size:13px; padding:6px 14px; border-radius:999px; color:#fff; white-space:nowrap; flex:none; }
+.flx-fraud-detection .flx-pill.flx-danger { background:var(--flx-danger,#E5484D); }
+.flx-fraud-detection .flx-pill.flx-warning { background:var(--flx-warning,#F2994A); }
+.flx-fraud-detection .flx-pill.flx-success { background:var(--flx-success,#27AE60); }
+.flx-fraud-detection .flx-pill.flx-neutral { background:#E8ECF2; color:#4A4F6A; }
+.flx-fraud-detection .flx-pill.flx-sm { font-size:11px; padding:3px 10px; }
+.flx-fraud-detection .flx-row { display:flex; align-items:center; gap:14px; height:56px; padding:0 16px; background:var(--flx-surface,#F6F8FB); border-radius:14px; font-size:var(--flx-t-item,15px); font-weight:500; }
+.flx-fraud-detection .flx-row.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-fraud-detection .flx-ic { width:36px; height:36px; border-radius:50%; background:var(--flx-danger-soft,#FDECEC); color:var(--flx-danger,#E5484D); display:grid; place-items:center; flex:none; }
+.flx-fraud-detection .flx-ic svg { width:18px; height:18px; }
+.flx-fraud-detection .flx-ic.flx-accent { background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); }
+.flx-fraud-detection .flx-btn { display:flex; align-items:center; justify-content:center; height:48px; border-radius:999px; background:var(--flx-accent,#00ACE4); color:#fff; font-size:15.5px; font-weight:600; }
+.flx-fraud-detection .flx-btn.flx-off { background:#9ADBF3; }
+.flx-fraud-detection .flx-btn-o { display:inline-block; background:#fff; border:1px solid #D5DBE5; border-radius:10px; padding:7px 13px; font-size:12.5px; font-weight:500; color:var(--flx-text,#1B1B3C); white-space:nowrap; }
+.flx-fraud-detection .flx-chip { display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 10px; border-radius:999px; background:#fff; border:1px solid var(--flx-hairline,#E3E7EF); font-size:12px; font-weight:500; white-space:nowrap; }
+.flx-fraud-detection .flx-chip i { width:8px; height:8px; border-radius:50%; display:block; }
+.flx-fraud-detection .flx-chip.flx-sel { border-color:var(--flx-accent,#00ACE4); background:#EAF7FD; }
+.flx-fraud-detection .flx-dots { display:flex; gap:6px; align-items:center; }
+.flx-fraud-detection .flx-dots i { width:9px; height:9px; border-radius:50%; background:#D9DEE7; display:block; }
+.flx-fraud-detection .flx-tip { background:var(--flx-text,#1B1B3C); color:#fff; font-size:12.5px; line-height:17px; padding:9px 14px; border-radius:10px; }
+.flx-fraud-detection .flx-num { position:absolute; right:-9px; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--flx-danger,#E5484D); color:#fff; font-size:11px; font-weight:700; display:grid; place-items:center; z-index:2; box-shadow:0 0 0 2px #fff; }
+.flx-fraud-detection .flx-flag { position:relative; }
+.flx-fraud-detection .flx-flag::after { content:""; position:absolute; inset:-3px -6px; border-radius:9px; background:rgba(229,72,77,.035); box-shadow:inset 0 0 0 2px var(--flx-danger,#E5484D); pointer-events:none; }
+.flx-fraud-detection .flx-spn { width:14px; height:14px; color:#9AA3B5; animation:flx-fx-cb-rot 1.4s linear infinite; }
+@keyframes flx-fx-cb-rot { to{ transform:rotate(360deg); } }
+.flx-fraud-detection .flx-shadow-soft { box-shadow:0 1px 4px rgba(27,27,60,.07); }
+.flx-fraud-detection .flx-floating { box-shadow:0 10px 24px -10px rgba(27,27,60,.28), 0 1px 3px rgba(27,27,60,.08); }
+.flx-fraud-detection .flx-dz { border:1.5px dashed #B3DDEF; border-radius:18px; background:#F2FAFD; padding:16px 12px; text-align:center; }
+.flx-fraud-detection .flx-frow { position:relative; display:flex; align-items:center; gap:12px; height:52px; padding:0 16px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(27,27,60,.07); font-size:15px; font-weight:500; }
+.flx-fraud-detection .flx-tb { display:flex; align-items:center; gap:12px; height:38px; padding:0 16px; }
+.flx-fraud-detection .flx-tb .flx-dots i { background:#3A3E57; }
+.flx-fraud-detection .flx-code { font-family:var(--flx-mono,'Flinks Roboto Mono','Roboto Mono',ui-monospace,Menlo,Consolas,monospace); font-size:12px; line-height:21px; padding:6px 12px 0 8px; color:var(--flx-code-text,#E6E9F5); }
+.flx-fraud-detection .flx-code .flx-ln { display:flex; }
+.flx-fraud-detection .flx-code .flx-no { width:28px; padding-right:12px; text-align:right; color:var(--flx-code-line,#5B6078); flex:none; user-select:none; }
+.flx-fraud-detection .flx-code .flx-tx { white-space:pre; }
+.flx-fraud-detection .flx-code .flx-k { color:var(--flx-code-key,#FFFFFF); }
+.flx-fraud-detection .flx-code .flx-s { color:var(--flx-code-string,#2DC08E); }
+.flx-fraud-detection .flx-code .flx-n { color:var(--flx-code-number,#6DD5F5); }
+.flx-fraud-detection .flx-code .flx-m { color:var(--flx-accent,#00ACE4); font-weight:500; }
+.flx-fraud-detection .flx-status { display:inline-flex; align-items:center; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; color:#fff; }
+.flx-fraud-detection .flx-status.flx-s200 { background:var(--flx-success,#27AE60); }
+.flx-fraud-detection .flx-status.flx-s202 { background:var(--flx-warning,#F2994A); }
+.flx-fraud-detection .flx-nt *, .flx-fraud-detection .flx-rst, .flx-fraud-detection .flx-rst * { transition:none !important; }
+.flx-fraud-detection .flx-out { opacity:1 !important; transition-delay:0s !important; }
+.flx-fraud-detection .flx-rec { left:401px; top:50px; width:252px; z-index:1; transform:scale(1.0689); transform-origin:0 0; }
+.flx-fraud-detection .flx-rec .flx-gb, .flx-fraud-detection .flx-vd .flx-gb { padding:3.742px; border-radius:22.45px; }
+.flx-fraud-detection .flx-rec .flx-gb .flx-in, .flx-fraud-detection .flx-vd .flx-gb .flx-in { border-radius:18.71px; }
+.flx-fraud-detection .flx-rec .flx-r:not(.flx-sel) .flx-n { opacity:.5; }
+.flx-fraud-detection .flx-rec .flx-in { padding:10px; }
+.flx-fraud-detection .flx-rec .flx-r { display:flex; align-items:center; gap:9px; height:48px; padding:0 10px; border-radius:12px; font-size:11.5px; font-weight:500; }
+.flx-fraud-detection .flx-rec .flx-r.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-fraud-detection .flx-rec .flx-r svg.flx-i { width:15px; height:15px; color:var(--flx-accent,#00ACE4); flex:none; }
+.flx-fraud-detection .flx-rec .flx-r .flx-n { flex:1; white-space:nowrap; }
+.flx-fraud-detection .flx-rec .flx-pill.flx-sm { padding:3px 8px; }
+.flx-fraud-detection .flx-rec .flx-r { gap:8px; }
+.flx-fraud-detection .flx-rec .flx-prog { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--flx-muted,#6B7088); white-space:nowrap; }
+.flx-fraud-detection .flx-rec .flx-prog .flx-spn { width:13px; height:13px; }
+.flx-fraud-detection .flx-vd { left:67.4px; top:120px; width:400px; z-index:2; transform:scale(1.0689); transform-origin:0 0; }
+.flx-fraud-detection .flx-vd .flx-in { padding:20px 18px 20px; }
+.flx-fraud-detection .flx-vd .flx-hd { display:flex; align-items:center; gap:12px; }
+.flx-fraud-detection .flx-vd .flx-nm { flex:1; font-size:12.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.flx-fraud-detection .flx-vd .flx-pill { font-size:12.5px; padding:6px 13px; }
+.flx-fraud-detection .flx-vd .flx-rows { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+.flx-fraud-detection .flx-vd .flx-row { height:52px; font-size:14.5px; }
+.flx-fraud-detection .flx-vd .flx-ft { display:flex; align-items:center; gap:10px; margin-top:16px; font-size:12px; color:var(--flx-muted,#6B7088); }
+.flx-fraud-detection .flx-vd .flx-ft svg { width:17px; height:17px; color:var(--flx-accent,#00ACE4); flex:none; }
+.flx-fraud-detection .flx-rec { left:225.3px; top:132.4px; transition:left .9s cubic-bezier(.4,0,.2,1), top .9s cubic-bezier(.4,0,.2,1); }
+.flx-fraud-detection .flx-add .flx-rec { top:106.7px; }
+.flx-fraud-detection .flx-g1 .flx-rec { left:401px; top:50px; }
+.flx-fraud-detection .flx-rw0 { max-height:0; overflow:hidden; transition:max-height .55s cubic-bezier(.4,0,.2,1); }
+.flx-fraud-detection .flx-add .flx-rw0 { max-height:60px; }
+.flx-fraud-detection .flx-rw0 .flx-r { transform:translateY(-12px); transition:transform .55s cubic-bezier(.4,0,.2,1), background .45s, box-shadow .45s; }
+.flx-fraud-detection .flx-add .flx-rw0 .flx-r { transform:none; }
+.flx-fraud-detection .flx-rec .flx-r.flx-sel { background:transparent; box-shadow:inset 0 0 0 transparent; }
+.flx-fraud-detection .flx-hl .flx-rec .flx-r.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-fraud-detection .flx-stw { display:grid; justify-items:end; align-items:center; }
+.flx-fraud-detection .flx-stw > * { grid-area:1/1; transition:opacity .35s, transform .35s; }
+.flx-fraud-detection .flx-stw .flx-sb { opacity:0; transform:scale(.8); }
+.flx-fraud-detection .flx-p2 .flx-stw .flx-sa { opacity:0; }
+.flx-fraud-detection .flx-p2 .flx-stw .flx-sb { opacity:1; transform:none; }
+.flx-fraud-detection .flx-vdw { position:absolute; left:0; top:0; width:720px; height:500px; z-index:2; pointer-events:none; transform-origin:535.7px 90.6px; transform:scale(0); transition:transform .8s cubic-bezier(.3,.7,.2,1); }
+.flx-fraud-detection .flx-g1 .flx-vdw { transform:scale(1); transition-delay:.7s; }
+.flx-fraud-detection .flx-vd { left:67.4px; top:158px; z-index:auto; transition:top .9s cubic-bezier(.4,0,.2,1); }
+.flx-fraud-detection .flx-p2 .flx-vd { top:120px; }
+.flx-fraud-detection .flx-vd .flx-rows { gap:0; margin-top:16px; }
+.flx-fraud-detection .flx-rw { max-height:0; opacity:0; overflow:hidden; padding-bottom:0; transition:max-height .55s cubic-bezier(.4,0,.2,1), opacity .4s, padding .55s; }
+.flx-fraud-detection .flx-rw.flx-proc { max-height:64px; opacity:1; padding-bottom:8px; }
+.flx-fraud-detection .flx-p2 .flx-rw.flx-proc { max-height:0; opacity:0; padding-bottom:0; }
+.flx-fraud-detection .flx-p2 .flx-rw.flx-r { max-height:64px; opacity:1; padding-bottom:8px; transition-delay:calc(var(--flx-i) * .16s + .25s); }
+.flx-fraud-detection .flx-vd .flx-row.flx-prow { gap:12px; height:52px; background:var(--flx-surface,#F6F8FB); border-radius:14px; display:flex; align-items:center; padding:0 16px; font-size:14.5px; font-weight:500; }
+.flx-fraud-detection .flx-spn { width:22px; height:22px; flex:none; color:#9AA3B5; }
+.flx-fraud-detection .flx-tkw { height:20px; overflow:hidden; }
+.flx-fraud-detection .flx-tk { transition:transform .4s cubic-bezier(.4,0,.2,1); transform:translateY(calc(var(--flx-k,0) * -20px)); }
+.flx-fraud-detection .flx-tk.flx-fz { transition:none; }
+.flx-fraud-detection .flx-tk span { display:block; height:20px; line-height:20px; font-size:14.5px; font-weight:400; color:var(--flx-muted,#6B7088); }
+.flx-fraud-detection .flx-tk span + span { color:var(--flx-text,#1B1B3C); font-weight:500; }
+.flx-fraud-detection .flx-vd .flx-pill { opacity:0; transform:scale(.85); transition:opacity .4s, transform .4s; }
+.flx-fraud-detection .flx-p2 .flx-vd .flx-pill { opacity:1; transform:none; transition-delay:.7s; }
+.flx-fraud-detection .flx-ftw { max-height:0; opacity:0; overflow:hidden; transition:max-height .5s, opacity .4s; }
+.flx-fraud-detection .flx-p2 .flx-ftw { max-height:40px; opacity:1; transition-delay:.95s; }
+.flx-fraud-detection .flx-vd .flx-ft { margin-top:0; padding-top:8px; }
+.flx-fraud-detection .flx-cursor { position:absolute; left:0; top:0; width:22px; height:22px; z-index:30; opacity:0; pointer-events:none; transform:translate(640px,440px); transition:transform .85s cubic-bezier(.45,0,.2,1), opacity .3s; filter:drop-shadow(0 2px 3px rgba(27,27,60,.3)); }
+.flx-fraud-detection .flx-pr { transform:scale(.96) !important; }
+.flx-fraud-detection .flx-rst, .flx-fraud-detection .flx-rst * { transition:none !important; }

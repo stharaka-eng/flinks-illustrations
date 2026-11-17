@@ -1,0 +1,148 @@
+/*!
+ * Flinks – "Bank connectivity" illustration. Production stylesheet: every rule is scoped under .flx-bank-connectivity.
+ * Design frame 720 × 500 px, scaled as a whole by animation.js (--flx-s).
+ * Config custom properties: --flx-width, --flx-max-width, --flx-height, --flx-bg, --flx-font-family,
+ *   --flx-text, --flx-muted, --flx-accent, --flx-accent-soft, --flx-accent-dim, --flx-red, --flx-red-soft
+ */
+.flx-bank-connectivity {
+  all: initial; --flx-s: 1; --flx-tx: 0px; --flx-ty: 0px;
+  display: block; position: relative; box-sizing: border-box;
+  width: var(--flx-width, 100%); max-width: var(--flx-max-width, 720px); height: var(--flx-height, auto);
+  aspect-ratio: 720 / 500; overflow: hidden; contain: layout paint style;
+  color: var(--flx-text, #1B1B3C);
+  font-family: var(--flx-font-family, 'Flinks Inter', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  line-height: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+.flx-bank-connectivity:not([data-flx-ready]) { visibility: hidden; }
+/* Defensive baseline: neutralises generic host rules ("* {letter-spacing}", "div {border}", "span {display:block}" …).
+   Component rules below have higher specificity and re-apply the real values. */
+.flx-bank-connectivity *, .flx-bank-connectivity *::before, .flx-bank-connectivity *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0 solid transparent; outline: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; word-spacing: normal; text-transform: none; text-shadow: none; text-decoration: none;
+  transition: none; animation: none;
+}
+.flx-bank-connectivity div, .flx-bank-connectivity p { display: block; }
+.flx-bank-connectivity span, .flx-bank-connectivity strong, .flx-bank-connectivity em, .flx-bank-connectivity b { display: inline; }
+.flx-bank-connectivity b, .flx-bank-connectivity strong { font-weight: 700; }   /* restore UA emphasis removed by the reset (component rules override where needed) */
+.flx-bank-connectivity em { font-style: italic; }
+.flx-bank-connectivity svg { display: block; max-width: none; max-height: none; }
+.flx-bank-connectivity .flx-scaler { position: absolute; left: 0; top: 0; width: 720px; height: 500px; transform-origin: 0 0; transform: translate(var(--flx-tx), var(--flx-ty)) scale(var(--flx-s)); }
+.flx-bank-connectivity .flx-stage { position: relative; width: 720px; height: 500px; border-radius: 24px; overflow: hidden; color: var(--flx-text, #1B1B3C); background: var(--flx-bg, #EAFAFF); }
+.flx-bank-connectivity.is-static *, .flx-bank-connectivity.is-static *::before { transition: none !important; animation: none !important; }
+
+/* ---- component ---- */
+.flx-bank-connectivity .flx-canvas { position:absolute; left:0; top:0; width:720px; height:500px; transform:scale(1.00000); transform-origin:0 0; }
+.flx-bank-connectivity svg.flx-i { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.flx-bank-connectivity .flx-abs { position:absolute; }
+.flx-bank-connectivity .flx-gb { padding:var(--flx-gb-w,4px); border-radius:var(--flx-gb-outer,24px); background:var(--flx-gb-gradient,linear-gradient(160deg, #8FD6F2 0%, #DDF3FB 45%, #A9DFF5 100%)); box-shadow:var(--flx-gb-shadow,0 26px 54px -18px rgba(0,172,228,.38), 0 4px 14px rgba(27,27,60,.06)); }
+.flx-bank-connectivity .flx-in { position:relative; overflow:hidden; border-radius:var(--flx-gb-inner,20px); }
+.flx-bank-connectivity .flx-in.flx-light { background:var(--flx-white,#FFFFFF); }
+.flx-bank-connectivity .flx-in.flx-dark { background:var(--flx-text,#1B1B3C); color:#fff; }
+.flx-bank-connectivity .flx-in.flx-code { background:var(--flx-code-bg,#11132A); color:var(--flx-code-text,#E6E9F5); }
+.flx-bank-connectivity .flx-badge { width:38px; height:38px; border-radius:50%; background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-bank-connectivity .flx-badge svg { width:20px; height:20px; }
+.flx-bank-connectivity .flx-pill { display:inline-flex; align-items:center; font-weight:600; font-size:13px; padding:6px 14px; border-radius:999px; color:#fff; white-space:nowrap; flex:none; }
+.flx-bank-connectivity .flx-pill.flx-danger { background:var(--flx-danger,#E5484D); }
+.flx-bank-connectivity .flx-pill.flx-warning { background:var(--flx-warning,#F2994A); }
+.flx-bank-connectivity .flx-pill.flx-success { background:var(--flx-success,#27AE60); }
+.flx-bank-connectivity .flx-pill.flx-neutral { background:#E8ECF2; color:#4A4F6A; }
+.flx-bank-connectivity .flx-pill.flx-sm { font-size:11px; padding:3px 10px; }
+.flx-bank-connectivity .flx-row { display:flex; align-items:center; gap:14px; height:56px; padding:0 16px; background:var(--flx-surface,#F6F8FB); border-radius:14px; font-size:var(--flx-t-item,15px); font-weight:500; }
+.flx-bank-connectivity .flx-row.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-bank-connectivity .flx-ic { width:36px; height:36px; border-radius:50%; background:var(--flx-danger-soft,#FDECEC); color:var(--flx-danger,#E5484D); display:grid; place-items:center; flex:none; }
+.flx-bank-connectivity .flx-ic svg { width:18px; height:18px; }
+.flx-bank-connectivity .flx-ic.flx-accent { background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); }
+.flx-bank-connectivity .flx-btn { display:flex; align-items:center; justify-content:center; height:48px; border-radius:999px; background:var(--flx-accent,#00ACE4); color:#fff; font-size:15.5px; font-weight:600; }
+.flx-bank-connectivity .flx-btn.flx-off { background:#9ADBF3; }
+.flx-bank-connectivity .flx-btn-o { display:inline-block; background:#fff; border:1px solid #D5DBE5; border-radius:10px; padding:7px 13px; font-size:12.5px; font-weight:500; color:var(--flx-text,#1B1B3C); white-space:nowrap; }
+.flx-bank-connectivity .flx-chip { display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 10px; border-radius:999px; background:#fff; border:1px solid var(--flx-hairline,#E3E7EF); font-size:12px; font-weight:500; white-space:nowrap; }
+.flx-bank-connectivity .flx-chip i { width:8px; height:8px; border-radius:50%; display:block; }
+.flx-bank-connectivity .flx-chip.flx-sel { border-color:var(--flx-accent,#00ACE4); background:#EAF7FD; }
+.flx-bank-connectivity .flx-dots { display:flex; gap:6px; align-items:center; }
+.flx-bank-connectivity .flx-dots i { width:9px; height:9px; border-radius:50%; background:#D9DEE7; display:block; }
+.flx-bank-connectivity .flx-tip { background:var(--flx-text,#1B1B3C); color:#fff; font-size:12.5px; line-height:17px; padding:9px 14px; border-radius:10px; }
+.flx-bank-connectivity .flx-num { position:absolute; right:-9px; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--flx-danger,#E5484D); color:#fff; font-size:11px; font-weight:700; display:grid; place-items:center; z-index:2; box-shadow:0 0 0 2px #fff; }
+.flx-bank-connectivity .flx-flag { position:relative; }
+.flx-bank-connectivity .flx-flag::after { content:""; position:absolute; inset:-3px -6px; border-radius:9px; background:rgba(229,72,77,.035); box-shadow:inset 0 0 0 2px var(--flx-danger,#E5484D); pointer-events:none; }
+.flx-bank-connectivity .flx-spn { width:14px; height:14px; color:#9AA3B5; animation:flx-bc-cb-rot 1.4s linear infinite; }
+@keyframes flx-bc-cb-rot { to{ transform:rotate(360deg); } }
+.flx-bank-connectivity .flx-shadow-soft { box-shadow:0 1px 4px rgba(27,27,60,.07); }
+.flx-bank-connectivity .flx-floating { box-shadow:0 10px 24px -10px rgba(27,27,60,.28), 0 1px 3px rgba(27,27,60,.08); }
+.flx-bank-connectivity .flx-dz { border:1.5px dashed #B3DDEF; border-radius:18px; background:#F2FAFD; padding:16px 12px; text-align:center; }
+.flx-bank-connectivity .flx-frow { position:relative; display:flex; align-items:center; gap:12px; height:52px; padding:0 16px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(27,27,60,.07); font-size:15px; font-weight:500; }
+.flx-bank-connectivity .flx-tb { display:flex; align-items:center; gap:12px; height:38px; padding:0 16px; }
+.flx-bank-connectivity .flx-tb .flx-dots i { background:#3A3E57; }
+.flx-bank-connectivity .flx-code { font-family:var(--flx-mono,'Flinks Roboto Mono','Roboto Mono',ui-monospace,Menlo,Consolas,monospace); font-size:12px; line-height:21px; padding:6px 12px 0 8px; color:var(--flx-code-text,#E6E9F5); }
+.flx-bank-connectivity .flx-code .flx-ln { display:flex; }
+.flx-bank-connectivity .flx-code .flx-no { width:28px; padding-right:12px; text-align:right; color:var(--flx-code-line,#5B6078); flex:none; user-select:none; }
+.flx-bank-connectivity .flx-code .flx-tx { white-space:pre; }
+.flx-bank-connectivity .flx-code .flx-k { color:var(--flx-code-key,#FFFFFF); }
+.flx-bank-connectivity .flx-code .flx-s { color:var(--flx-code-string,#2DC08E); }
+.flx-bank-connectivity .flx-code .flx-n { color:var(--flx-code-number,#6DD5F5); }
+.flx-bank-connectivity .flx-code .flx-m { color:var(--flx-accent,#00ACE4); font-weight:500; }
+.flx-bank-connectivity .flx-status { display:inline-flex; align-items:center; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; color:#fff; }
+.flx-bank-connectivity .flx-status.flx-s200 { background:var(--flx-success,#27AE60); }
+.flx-bank-connectivity .flx-status.flx-s202 { background:var(--flx-warning,#F2994A); }
+.flx-bank-connectivity .flx-nt *, .flx-bank-connectivity .flx-rst, .flx-bank-connectivity .flx-rst * { transition:none !important; }
+.flx-bank-connectivity .flx-out { opacity:1 !important; transition-delay:0s !important; }
+.flx-bank-connectivity .flx-op { left:56px; top:50px; width:330px; z-index:1; }
+.flx-bank-connectivity .flx-op .flx-in { padding:22px 22px 22px; }
+.flx-bank-connectivity .flx-op h3 { font-size:17px; line-height:22px; font-weight:600; letter-spacing:-.01em; }
+.flx-bank-connectivity .flx-op .flx-bl { font-size:11px; color:var(--flx-muted,#6B7088); margin-top:12px; }
+.flx-bank-connectivity .flx-op .flx-bal { font-size:26px; line-height:30px; font-weight:600; letter-spacing:-.02em; margin-top:2px; }
+.flx-bank-connectivity .flx-op .flx-lab { font-size:11.5px; font-weight:500; margin-top:16px; }
+.flx-bank-connectivity .flx-op .flx-inp { height:44px; border:1px solid var(--flx-hairline,#E3E7EF); border-radius:12px; display:flex; align-items:center; padding:0 14px; font-size:15px; font-weight:500; margin-top:6px; }
+.flx-bank-connectivity .flx-op .flx-sel { height:48px; background:var(--flx-surface,#F6F8FB); border-radius:12px; display:flex; align-items:center; gap:10px; padding:0 12px; margin-top:6px; font-size:13.5px; font-weight:500; color:var(--flx-text,#1B1B3C); }
+.flx-bank-connectivity .flx-op .flx-sel .flx-bd { width:28px; height:28px; border-radius:50%; background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-bank-connectivity .flx-op .flx-sel .flx-bd svg { width:15px; height:15px; }
+.flx-bank-connectivity .flx-op .flx-sel .flx-go { margin-left:auto; width:16px; height:16px; color:#8C93A8; }
+.flx-bank-connectivity .flx-op .flx-btn { margin-top:18px; height:46px; }
+.flx-bank-connectivity .flx-cn { left:332px; top:75px; width:344px; z-index:2; }
+.flx-bank-connectivity .flx-cn .flx-in { padding:18px 20px 20px; }
+.flx-bank-connectivity .flx-cn .flx-logo { display:block; height:25px; line-height:0; }
+.flx-bank-connectivity .flx-cn .flx-logo svg { display:block; }
+.flx-bank-connectivity .flx-cn h4 { font-size:17px; line-height:24px; font-weight:600; letter-spacing:-.015em; margin-top:12px; }
+.flx-bank-connectivity .flx-cn .flx-srch { display:flex; align-items:center; gap:9px; height:38px; border:1px solid var(--flx-hairline,#E3E7EF); border-radius:12px; padding:0 12px; margin-top:10px; font-size:11.5px; color:var(--flx-muted,#6B7088); white-space:nowrap; }
+.flx-bank-connectivity .flx-cn .flx-srch svg { width:15px; height:15px; flex:none; }
+.flx-bank-connectivity .flx-cn .flx-trust { display:flex; gap:9px; align-items:flex-start; font-size:10.5px; line-height:15px; margin-top:11px; }
+.flx-bank-connectivity .flx-cn .flx-trust svg { width:14px; height:14px; flex:none; margin-top:1px; color:var(--flx-text,#1B1B3C); }
+.flx-bank-connectivity .flx-bk { display:flex; align-items:center; gap:12px; height:54px; padding:0 12px; background:var(--flx-surface,#F6F8FB); border-radius:14px; margin-top:8px; }
+.flx-bank-connectivity .flx-trust + .flx-bk { margin-top:12px; }
+.flx-bank-connectivity .flx-bk .flx-lg { position:relative; width:36px; height:36px; border-radius:50%; display:grid; place-items:center; flex:none; }
+.flx-bank-connectivity .flx-bk .flx-lg > svg:first-child { display:block; width:36px; height:36px; }
+.flx-bank-connectivity .flx-bk .flx-fg { position:absolute; right:-4px; bottom:-3px; width:15px; height:15px; border-radius:50%; box-shadow:0 0 0 2px var(--flx-surface,#F6F8FB); display:block; line-height:0; overflow:hidden; }
+.flx-bank-connectivity .flx-bk .flx-fg svg { display:block; width:15px; height:15px; }
+.flx-bank-connectivity .flx-bk .flx-nm { flex:1; min-width:0; }
+.flx-bank-connectivity .flx-bk b { display:block; font-size:13.5px; font-weight:600; line-height:17px; }
+.flx-bank-connectivity .flx-bk em { display:block; font-style:normal; font-size:11px; color:var(--flx-muted,#6B7088); line-height:14px; }
+.flx-bank-connectivity .flx-bk .flx-go { width:15px; height:15px; color:var(--flx-text,#1B1B3C); flex:none; }
+.flx-bank-connectivity .flx-op, .flx-bank-connectivity .flx-cn { transition:left .9s cubic-bezier(.4,0,.2,1), top .9s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.4,0,.2,1); }
+.flx-bank-connectivity .flx-op { left:195px; top:70px; }
+.flx-bank-connectivity .flx-p2 .flx-op { left:56px; top:50px; }
+.flx-bank-connectivity .flx-cn { transform:translateX(440px); }
+.flx-bank-connectivity .flx-p2 .flx-cn, .flx-bank-connectivity .flx-cn.flx-stay { transform:none; }
+.flx-bank-connectivity .flx-bk { opacity:0; transform:translateY(8px); transition:opacity .4s, transform .4s, background .3s, box-shadow .3s; }
+.flx-bank-connectivity .flx-p2 .flx-bk { opacity:1; transform:none; transition-delay:calc(var(--flx-i) * .12s + .75s); }
+.flx-bank-connectivity .flx-cn.flx-out .flx-bk { opacity:1 !important; transform:none !important; transition:none !important; }
+.flx-bank-connectivity .flx-pick .flx-bk.flx-b1 { background:#E8F6FC; box-shadow:inset 0 0 0 1.5px var(--flx-accent,#00ACE4); transition-delay:0s; }
+.flx-bank-connectivity .flx-op .flx-sel { position:relative; }
+.flx-bank-connectivity .flx-op .flx-sel .flx-la, .flx-bank-connectivity .flx-op .flx-sel .flx-lb { position:absolute; left:12px; top:0; bottom:0; display:flex; align-items:center; gap:10px; transition:opacity .4s; }
+.flx-bank-connectivity .flx-op .flx-sel .flx-lb { opacity:0; font-weight:600; }
+.flx-bank-connectivity .flx-op .flx-sel .flx-lb svg:first-child { width:28px; height:28px; }
+.flx-bank-connectivity .flx-done .flx-op .flx-sel .flx-la { opacity:0; }
+.flx-bank-connectivity .flx-done .flx-op .flx-sel .flx-lb { opacity:1; }
+.flx-bank-connectivity .flx-op .flx-btn { transition:background .4s; }
+.flx-bank-connectivity .flx-done .flx-op .flx-btn { background:var(--flx-accent,#00ACE4); }
+.flx-bank-connectivity .flx-op .flx-inp { position:relative; transition:border-color .25s, box-shadow .25s; }
+.flx-bank-connectivity .flx-op .flx-inp .flx-a0, .flx-bank-connectivity .flx-op .flx-inp .flx-a1 { transition:opacity .35s; }
+.flx-bank-connectivity .flx-op .flx-inp .flx-a0 { color:var(--flx-muted,#6B7088); }
+.flx-bank-connectivity .flx-op .flx-inp .flx-a1 { position:absolute; left:14px; top:0; bottom:0; display:flex; align-items:center; opacity:0; }
+.flx-bank-connectivity .flx-amt .flx-op .flx-inp .flx-a0 { opacity:0; }
+.flx-bank-connectivity .flx-amt .flx-op .flx-inp .flx-a1 { opacity:1; }
+.flx-bank-connectivity .flx-op .flx-inp.flx-focus { border-color:var(--flx-accent,#00ACE4); box-shadow:0 0 0 3px rgba(0,172,228,.16); }
+.flx-bank-connectivity .flx-op .flx-inp .flx-caret { display:none; width:1.5px; height:18px; background:var(--flx-accent,#00ACE4); margin-left:1px; animation:flx-bc-blink 1s steps(1) infinite; }
+.flx-bank-connectivity .flx-op .flx-inp.flx-focus .flx-caret { display:inline-block; }
+@keyframes flx-bc-blink { 50%{ opacity:0; } }
+.flx-bank-connectivity .flx-cursor { position:absolute; left:0; top:0; width:22px; height:22px; z-index:30; opacity:0; pointer-events:none; transform:translate(640px,440px); transition:transform .85s cubic-bezier(.45,0,.2,1), opacity .3s; filter:drop-shadow(0 2px 3px rgba(27,27,60,.3)); }
+.flx-bank-connectivity .flx-pr { transform:scale(.96) !important; }
+.flx-bank-connectivity .flx-rst, .flx-bank-connectivity .flx-rst * { transition:none !important; }
