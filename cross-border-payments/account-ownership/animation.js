@@ -140,7 +140,7 @@
   };
 })(window);
 
-/* ===== Flinks · Account ownership (Cross-Border Payments, card 01) — animation logic. Sequence/timings 1:1 with original-xborder/a1.html ===== */
+/* ===== Flinks · Account ownership (Cross-Border Payments, card 01) — animation logic. Sequence/timings 1:1 with original-xborder-v2/a1.html (revised sequence) ===== */
 (function () {
   var stage, canvas, cursor, b1;
   function setup(c) { stage = c.q('.flx-stage'); canvas = c.q('.flx-canvas'); cursor = c.q('.flx-cursor'); b1 = c.q('.flx-bk.flx-b1'); }
@@ -154,12 +154,12 @@
   function hideCursor() { cursor.style.opacity = '0'; }
   async function run(c) {
     for (;;) {
-      await c.sleep(1500);                                              // 01 · onboarding screen alone, centred
-      stage.className = 'flx-stage flx-s2'; await c.sleep(1500);        // 02 · Connect sheet slides in, onboarding moves to its place
+      await c.sleep(1400);                                              // 01 · Connect alone, centred on stage
       moveTo(c, b1, .55, .5); await c.sleep(1050); await press(c, b1);
-      b1.classList.add('flx-pick'); await c.sleep(750);                 // 03 · customer picks their institution
-      hideCursor(); stage.className = 'flx-stage flx-s3'; await c.sleep(4200);   // 04 · name, address and account numbers come back from the bank
-      stage.className = 'flx-stage flx-s1'; await c.sleep(1100); b1.classList.remove('flx-pick'); await c.sleep(200);   // Connect slides out, onboarding returns to centre
+      b1.classList.add('flx-pick'); await c.sleep(700); hideCursor();   // 02 · customer picks FTB
+      stage.className = 'flx-stage flx-s2'; await c.sleep(1500);        // 03 · Connect moves left, onboarding card slides in
+      stage.className = 'flx-stage flx-s3'; await c.sleep(4200);        // 04 · name, address and account numbers fill in
+      stage.className = 'flx-stage flx-s1'; await c.sleep(1100); b1.classList.remove('flx-pick'); await c.sleep(200);   // onboarding slides out, Connect returns to centre
     }
   }
   window.FlinksAnimations.register('account-ownership', 'flx-account-ownership', { setup: setup, reset: reset, final: final, run: run });

@@ -109,7 +109,7 @@
 .flx-nsf-risk .flx-vr .flx-row .flx-v { position:relative; transition:color .2s; }
 .flx-nsf-risk .flx-vr .flx-row .flx-v::after { content:""; position:absolute; left:-2px; right:-2px; top:3px; bottom:3px; border-radius:6px; background:#E3E7EF; opacity:0; transition:opacity .3s; }
 .flx-nsf-risk .flx-vr { transition:transform .95s cubic-bezier(.4,0,.2,1); }
-.flx-nsf-risk .flx-s1 .flx-vr, .flx-nsf-risk .flx-s2 .flx-vr { transform:translateX(71px); }
+.flx-nsf-risk .flx-s1 .flx-vr, .flx-nsf-risk .flx-s2 .flx-vr { transform:translate(71px,49px); }
 .flx-nsf-risk .flx-s1 .flx-vr .flx-row .flx-v { color:transparent !important; }
 .flx-nsf-risk .flx-s1 .flx-vr .flx-row .flx-v::after { opacity:1; }
 .flx-nsf-risk .flx-vr .flx-pill { transition:opacity .3s ease, transform .35s cubic-bezier(.3,1.5,.5,1); transform-origin:100% 50%; }

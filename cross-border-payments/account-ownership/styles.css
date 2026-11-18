@@ -125,9 +125,9 @@
 .flx-account-ownership .flx-s3 .flx-op .flx-btn { transition-delay:1.7s; }
 .flx-account-ownership .flx-s1 .flx-op .flx-btn, .flx-account-ownership .flx-s2 .flx-op .flx-btn { background:#9ADBF3; }
 .flx-account-ownership .flx-op { transition:transform .95s cubic-bezier(.4,0,.2,1); }
-.flx-account-ownership .flx-s1 .flx-op { transform:translateX(-143px); }
+.flx-account-ownership .flx-s1 .flx-op { transform:translateX(420px); }
 .flx-account-ownership .flx-cn { transition:transform .95s cubic-bezier(.4,0,.2,1); }
-.flx-account-ownership .flx-s1 .flx-cn { transform:translateX(-440px); }
+.flx-account-ownership .flx-s1 .flx-cn { transform:translate(126px,-9px); }
 .flx-account-ownership .flx-bk { transition:background .3s ease, box-shadow .3s ease; }
 .flx-account-ownership .flx-bk.flx-pick { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
 .flx-account-ownership .flx-cursor { position:absolute; left:0; top:0; width:22px; height:22px; z-index:30; opacity:0; pointer-events:none; transform:translate(660px,470px); transition:transform .85s cubic-bezier(.45,0,.2,1), opacity .3s; filter:drop-shadow(0 2px 3px rgba(27,27,60,.3)); }
