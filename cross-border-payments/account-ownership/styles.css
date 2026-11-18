@@ -1,0 +1,134 @@
+/*!
+ * Flinks – "Account ownership" illustration. Production stylesheet: every rule is scoped under .flx-account-ownership.
+ * Design frame 720 × 500 px, scaled as a whole by animation.js (--flx-s).
+ * Config custom properties: --flx-width, --flx-max-width, --flx-height, --flx-bg, --flx-font-family,
+ *   --flx-text, --flx-muted, --flx-accent, --flx-accent-soft, --flx-accent-dim, --flx-red, --flx-red-soft
+ */
+.flx-account-ownership {
+  all: initial; --flx-s: 1; --flx-tx: 0px; --flx-ty: 0px;
+  display: block; position: relative; box-sizing: border-box;
+  width: var(--flx-width, 100%); max-width: var(--flx-max-width, 720px); height: var(--flx-height, auto);
+  aspect-ratio: 720 / 500; overflow: hidden; contain: layout paint style;
+  color: var(--flx-text, #1B1B3C);
+  font-family: var(--flx-font-family, 'Flinks Inter', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  line-height: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+.flx-account-ownership:not([data-flx-ready]) { visibility: hidden; }
+/* Defensive baseline: neutralises generic host rules ("* {letter-spacing}", "div {border}", "span {display:block}" …).
+   Component rules below have higher specificity and re-apply the real values. */
+.flx-account-ownership *, .flx-account-ownership *::before, .flx-account-ownership *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0 solid transparent; outline: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; word-spacing: normal; text-transform: none; text-shadow: none; text-decoration: none;
+  transition: none; animation: none;
+}
+.flx-account-ownership div, .flx-account-ownership p { display: block; }
+.flx-account-ownership span, .flx-account-ownership strong, .flx-account-ownership em, .flx-account-ownership b { display: inline; }
+.flx-account-ownership b, .flx-account-ownership strong { font-weight: 700; }   /* restore UA emphasis removed by the reset (component rules override where needed) */
+.flx-account-ownership em { font-style: italic; }
+.flx-account-ownership svg { display: block; max-width: none; max-height: none; }
+.flx-account-ownership .flx-scaler { position: absolute; left: 0; top: 0; width: 720px; height: 500px; transform-origin: 0 0; transform: translate(var(--flx-tx), var(--flx-ty)) scale(var(--flx-s)); }
+.flx-account-ownership .flx-stage { position: relative; width: 720px; height: 500px; border-radius: 24px; overflow: hidden; color: var(--flx-text, #1B1B3C); background: var(--flx-bg, #EAFAFF); }
+.flx-account-ownership.is-static *, .flx-account-ownership.is-static *::before { transition: none !important; animation: none !important; }
+
+/* ---- component ---- */
+.flx-account-ownership .flx-canvas { position:absolute; left:0; top:0; width:720px; height:500px; transform:scale(1.00000); transform-origin:0 0; }
+.flx-account-ownership svg.flx-i { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.flx-account-ownership .flx-abs { position:absolute; }
+.flx-account-ownership .flx-gb { padding:var(--flx-gb-w,4px); border-radius:var(--flx-gb-outer,24px); background:var(--flx-gb-gradient,linear-gradient(160deg, #8FD6F2 0%, #DDF3FB 45%, #A9DFF5 100%)); box-shadow:var(--flx-gb-shadow,0 26px 54px -18px rgba(0,172,228,.38), 0 4px 14px rgba(27,27,60,.06)); }
+.flx-account-ownership .flx-in { position:relative; overflow:hidden; border-radius:var(--flx-gb-inner,20px); }
+.flx-account-ownership .flx-in.flx-light { background:var(--flx-white,#FFFFFF); }
+.flx-account-ownership .flx-in.flx-dark { background:var(--flx-text,#1B1B3C); color:#fff; }
+.flx-account-ownership .flx-in.flx-code { background:var(--flx-code-bg,#11132A); color:var(--flx-code-text,#E6E9F5); }
+.flx-account-ownership .flx-badge { width:38px; height:38px; border-radius:50%; background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-account-ownership .flx-badge svg { width:20px; height:20px; }
+.flx-account-ownership .flx-pill { display:inline-flex; align-items:center; font-weight:600; font-size:13px; padding:6px 14px; border-radius:999px; color:#fff; white-space:nowrap; flex:none; }
+.flx-account-ownership .flx-pill.flx-danger { background:var(--flx-danger,#E5484D); }
+.flx-account-ownership .flx-pill.flx-warning { background:var(--flx-warning,#F2994A); }
+.flx-account-ownership .flx-pill.flx-success { background:var(--flx-success,#27AE60); }
+.flx-account-ownership .flx-pill.flx-neutral { background:#E8ECF2; color:#4A4F6A; }
+.flx-account-ownership .flx-pill.flx-sm { font-size:11px; padding:3px 10px; }
+.flx-account-ownership .flx-row { display:flex; align-items:center; gap:14px; height:56px; padding:0 16px; background:var(--flx-surface,#F6F8FB); border-radius:14px; font-size:var(--flx-t-item,15px); font-weight:500; }
+.flx-account-ownership .flx-row.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-account-ownership .flx-ic { width:36px; height:36px; border-radius:50%; background:var(--flx-danger-soft,#FDECEC); color:var(--flx-danger,#E5484D); display:grid; place-items:center; flex:none; }
+.flx-account-ownership .flx-ic svg { width:18px; height:18px; }
+.flx-account-ownership .flx-ic.flx-accent { background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); }
+.flx-account-ownership .flx-btn { display:flex; align-items:center; justify-content:center; height:48px; border-radius:999px; background:var(--flx-accent,#00ACE4); color:#fff; font-size:15.5px; font-weight:600; }
+.flx-account-ownership .flx-btn.flx-off { background:#9ADBF3; }
+.flx-account-ownership .flx-btn-o { display:inline-block; background:#fff; border:1px solid #D5DBE5; border-radius:10px; padding:7px 13px; font-size:12.5px; font-weight:500; color:var(--flx-text,#1B1B3C); white-space:nowrap; }
+.flx-account-ownership .flx-chip { display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 10px; border-radius:999px; background:#fff; border:1px solid var(--flx-hairline,#E3E7EF); font-size:12px; font-weight:500; white-space:nowrap; }
+.flx-account-ownership .flx-chip i { width:8px; height:8px; border-radius:50%; display:block; }
+.flx-account-ownership .flx-chip.flx-sel { border-color:var(--flx-accent,#00ACE4); background:#EAF7FD; }
+.flx-account-ownership .flx-dots { display:flex; gap:6px; align-items:center; }
+.flx-account-ownership .flx-dots i { width:9px; height:9px; border-radius:50%; background:#D9DEE7; display:block; }
+.flx-account-ownership .flx-tip { background:var(--flx-text,#1B1B3C); color:#fff; font-size:12.5px; line-height:17px; padding:9px 14px; border-radius:10px; }
+.flx-account-ownership .flx-num { position:absolute; right:-9px; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--flx-danger,#E5484D); color:#fff; font-size:11px; font-weight:700; display:grid; place-items:center; z-index:2; box-shadow:0 0 0 2px #fff; }
+.flx-account-ownership .flx-flag { position:relative; }
+.flx-account-ownership .flx-flag::after { content:""; position:absolute; inset:-3px -6px; border-radius:9px; background:rgba(229,72,77,.035); box-shadow:inset 0 0 0 2px var(--flx-danger,#E5484D); pointer-events:none; }
+.flx-account-ownership .flx-spn { width:14px; height:14px; color:#9AA3B5; animation:flx-ao-cb-rot 1.4s linear infinite; }
+@keyframes flx-ao-cb-rot { to{ transform:rotate(360deg); } }
+.flx-account-ownership .flx-shadow-soft { box-shadow:0 1px 4px rgba(27,27,60,.07); }
+.flx-account-ownership .flx-floating { box-shadow:0 10px 24px -10px rgba(27,27,60,.28), 0 1px 3px rgba(27,27,60,.08); }
+.flx-account-ownership .flx-dz { border:1.5px dashed #B3DDEF; border-radius:18px; background:#F2FAFD; padding:16px 12px; text-align:center; }
+.flx-account-ownership .flx-frow { position:relative; display:flex; align-items:center; gap:12px; height:52px; padding:0 16px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(27,27,60,.07); font-size:15px; font-weight:500; }
+.flx-account-ownership .flx-tb { display:flex; align-items:center; gap:12px; height:38px; padding:0 16px; }
+.flx-account-ownership .flx-tb .flx-dots i { background:#3A3E57; }
+.flx-account-ownership .flx-code { font-family:var(--flx-mono,'Flinks Roboto Mono','Roboto Mono',ui-monospace,Menlo,Consolas,monospace); font-size:12px; line-height:21px; padding:6px 12px 0 8px; color:var(--flx-code-text,#E6E9F5); }
+.flx-account-ownership .flx-code .flx-ln { display:flex; }
+.flx-account-ownership .flx-code .flx-no { width:28px; padding-right:12px; text-align:right; color:var(--flx-code-line,#5B6078); flex:none; user-select:none; }
+.flx-account-ownership .flx-code .flx-tx { white-space:pre; }
+.flx-account-ownership .flx-code .flx-k { color:var(--flx-code-key,#FFFFFF); }
+.flx-account-ownership .flx-code .flx-s { color:var(--flx-code-string,#2DC08E); }
+.flx-account-ownership .flx-code .flx-n { color:var(--flx-code-number,#6DD5F5); }
+.flx-account-ownership .flx-code .flx-m { color:var(--flx-accent,#00ACE4); font-weight:500; }
+.flx-account-ownership .flx-status { display:inline-flex; align-items:center; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; color:#fff; }
+.flx-account-ownership .flx-status.flx-s200 { background:var(--flx-success,#27AE60); }
+.flx-account-ownership .flx-status.flx-s202 { background:var(--flx-warning,#F2994A); }
+.flx-account-ownership .flx-nt *, .flx-account-ownership .flx-rst, .flx-account-ownership .flx-rst * { transition:none !important; }
+.flx-account-ownership .flx-out { opacity:1 !important; transition-delay:0s !important; }
+.flx-account-ownership .flx-op { left:353px; top:46px; width:300px; z-index:2; }
+.flx-account-ownership .flx-op .flx-in { padding:22px 22px 22px; min-height:493px; }
+.flx-account-ownership .flx-op h3 { font-size:17px; line-height:22px; font-weight:600; letter-spacing:-.01em; }
+.flx-account-ownership .flx-op .flx-lab { font-size:11.5px; font-weight:500; margin-top:14px; }
+.flx-account-ownership .flx-op .flx-fld { position:relative; height:44px; border:1px solid var(--flx-hairline,#E3E7EF); border-radius:12px; display:flex; align-items:center; padding:0 44px 0 15px; font-size:13.5px; font-weight:500; margin-top:6px; white-space:nowrap; }
+.flx-account-ownership .flx-op .flx-fld.flx-tall { height:58px; line-height:18px; }
+.flx-account-ownership .flx-op .flx-fld .flx-ok { position:absolute; right:13px; top:50%; margin-top:-12px; width:24px; height:24px; display:block; line-height:0; }
+.flx-account-ownership .flx-op .flx-fld .flx-ok svg { width:24px; height:24px; display:block; }
+.flx-account-ownership .flx-op .flx-two { display:flex; gap:10px; }
+.flx-account-ownership .flx-op .flx-two > div { flex:1; min-width:0; }
+.flx-account-ownership .flx-op .flx-btn { margin-top:18px; height:46px; }
+.flx-account-ownership .flx-cn { left:66px; top:66px; width:336px; z-index:1; }
+.flx-account-ownership .flx-cn .flx-in { padding:18px 20px 20px; }
+.flx-account-ownership .flx-cn .flx-logo { display:block; height:25px; line-height:0; }
+.flx-account-ownership .flx-cn .flx-logo svg { display:block; }
+.flx-account-ownership .flx-cn h4 { font-size:17px; line-height:24px; font-weight:600; letter-spacing:-.015em; margin-top:12px; }
+.flx-account-ownership .flx-cn .flx-srch { display:flex; align-items:center; gap:9px; height:38px; border:1px solid var(--flx-hairline,#E3E7EF); border-radius:12px; padding:0 12px; margin-top:10px; font-size:11.5px; color:var(--flx-muted,#6B7088); white-space:nowrap; }
+.flx-account-ownership .flx-cn .flx-srch svg { width:15px; height:15px; flex:none; }
+.flx-account-ownership .flx-cn .flx-trust { display:flex; gap:9px; align-items:flex-start; font-size:10.5px; line-height:15px; margin-top:11px; }
+.flx-account-ownership .flx-cn .flx-trust svg { width:14px; height:14px; flex:none; margin-top:1px; color:var(--flx-text,#1B1B3C); }
+.flx-account-ownership .flx-bk { display:flex; align-items:center; gap:12px; height:54px; padding:0 12px; background:var(--flx-surface,#F6F8FB); border-radius:14px; margin-top:8px; }
+.flx-account-ownership .flx-trust + .flx-bk { margin-top:12px; }
+.flx-account-ownership .flx-bk .flx-lg { position:relative; width:36px; height:36px; border-radius:50%; display:grid; place-items:center; flex:none; }
+.flx-account-ownership .flx-bk .flx-lg > svg:first-child { display:block; width:36px; height:36px; }
+.flx-account-ownership .flx-bk .flx-fg { position:absolute; right:-4px; bottom:-3px; width:15px; height:15px; border-radius:50%; box-shadow:0 0 0 2px var(--flx-surface,#F6F8FB); display:block; line-height:0; overflow:hidden; }
+.flx-account-ownership .flx-bk .flx-fg svg { display:block; width:15px; height:15px; }
+.flx-account-ownership .flx-bk .flx-nm { flex:1; min-width:0; }
+.flx-account-ownership .flx-bk b { display:block; font-size:13.5px; font-weight:600; line-height:17px; }
+.flx-account-ownership .flx-bk em { display:block; font-style:normal; font-size:11px; color:var(--flx-muted,#6B7088); line-height:14px; }
+.flx-account-ownership .flx-bk .flx-go { width:15px; height:15px; color:var(--flx-text,#1B1B3C); flex:none; }
+.flx-account-ownership .flx-op .flx-fld .flx-val { transition:opacity .4s ease, transform .4s ease; transition-delay:0s; display:block; }
+.flx-account-ownership .flx-op .flx-fld .flx-ok { transition:opacity .3s ease, transform .35s cubic-bezier(.3,1.5,.5,1); transition-delay:0s; }
+.flx-account-ownership .flx-s1 .flx-op .flx-fld .flx-val, .flx-account-ownership .flx-s2 .flx-op .flx-fld .flx-val { opacity:0; transform:translateY(5px); }
+.flx-account-ownership .flx-s1 .flx-op .flx-fld .flx-ok, .flx-account-ownership .flx-s2 .flx-op .flx-fld .flx-ok { opacity:0; transform:scale(.4); }
+.flx-account-ownership .flx-s3 .flx-op .flx-fld .flx-val { transition-delay:var(--flx-d); }
+.flx-account-ownership .flx-s3 .flx-op .flx-fld .flx-ok { transition-delay:calc(var(--flx-d) + .28s); }
+.flx-account-ownership .flx-op .flx-btn { transition:background .45s ease; transition-delay:0s; }
+.flx-account-ownership .flx-s3 .flx-op .flx-btn { transition-delay:1.7s; }
+.flx-account-ownership .flx-s1 .flx-op .flx-btn, .flx-account-ownership .flx-s2 .flx-op .flx-btn { background:#9ADBF3; }
+.flx-account-ownership .flx-op { transition:transform .95s cubic-bezier(.4,0,.2,1); }
+.flx-account-ownership .flx-s1 .flx-op { transform:translateX(-143px); }
+.flx-account-ownership .flx-cn { transition:transform .95s cubic-bezier(.4,0,.2,1); }
+.flx-account-ownership .flx-s1 .flx-cn { transform:translateX(-440px); }
+.flx-account-ownership .flx-bk { transition:background .3s ease, box-shadow .3s ease; }
+.flx-account-ownership .flx-bk.flx-pick { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-account-ownership .flx-cursor { position:absolute; left:0; top:0; width:22px; height:22px; z-index:30; opacity:0; pointer-events:none; transform:translate(660px,470px); transition:transform .85s cubic-bezier(.45,0,.2,1), opacity .3s; filter:drop-shadow(0 2px 3px rgba(27,27,60,.3)); }
+.flx-account-ownership .flx-pr { transform:scale(.96) !important; }

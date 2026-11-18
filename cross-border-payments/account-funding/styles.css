@@ -1,0 +1,125 @@
+/*!
+ * Flinks – "Account funding" illustration. Production stylesheet: every rule is scoped under .flx-account-funding.
+ * Design frame 720 × 500 px, scaled as a whole by animation.js (--flx-s).
+ * Config custom properties: --flx-width, --flx-max-width, --flx-height, --flx-bg, --flx-font-family,
+ *   --flx-text, --flx-muted, --flx-accent, --flx-accent-soft, --flx-accent-dim, --flx-red, --flx-red-soft
+ */
+.flx-account-funding {
+  all: initial; --flx-s: 1; --flx-tx: 0px; --flx-ty: 0px;
+  display: block; position: relative; box-sizing: border-box;
+  width: var(--flx-width, 100%); max-width: var(--flx-max-width, 720px); height: var(--flx-height, auto);
+  aspect-ratio: 720 / 500; overflow: hidden; contain: layout paint style;
+  color: var(--flx-text, #1B1B3C);
+  font-family: var(--flx-font-family, 'Flinks Inter', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  line-height: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+.flx-account-funding:not([data-flx-ready]) { visibility: hidden; }
+/* Defensive baseline: neutralises generic host rules ("* {letter-spacing}", "div {border}", "span {display:block}" …).
+   Component rules below have higher specificity and re-apply the real values. */
+.flx-account-funding *, .flx-account-funding *::before, .flx-account-funding *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0 solid transparent; outline: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; word-spacing: normal; text-transform: none; text-shadow: none; text-decoration: none;
+  transition: none; animation: none;
+}
+.flx-account-funding div, .flx-account-funding p { display: block; }
+.flx-account-funding span, .flx-account-funding strong, .flx-account-funding em, .flx-account-funding b { display: inline; }
+.flx-account-funding b, .flx-account-funding strong { font-weight: 700; }   /* restore UA emphasis removed by the reset (component rules override where needed) */
+.flx-account-funding em { font-style: italic; }
+.flx-account-funding svg { display: block; max-width: none; max-height: none; }
+.flx-account-funding .flx-scaler { position: absolute; left: 0; top: 0; width: 720px; height: 500px; transform-origin: 0 0; transform: translate(var(--flx-tx), var(--flx-ty)) scale(var(--flx-s)); }
+.flx-account-funding .flx-stage { position: relative; width: 720px; height: 500px; border-radius: 24px; overflow: hidden; color: var(--flx-text, #1B1B3C); background: var(--flx-bg, #EAFAFF); }
+.flx-account-funding.is-static *, .flx-account-funding.is-static *::before { transition: none !important; animation: none !important; }
+
+/* ---- component ---- */
+.flx-account-funding .flx-canvas { position:absolute; left:0; top:0; width:720px; height:500px; transform:scale(1.00000); transform-origin:0 0; }
+.flx-account-funding svg.flx-i { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.flx-account-funding .flx-abs { position:absolute; }
+.flx-account-funding .flx-gb { padding:var(--flx-gb-w,4px); border-radius:var(--flx-gb-outer,24px); background:var(--flx-gb-gradient,linear-gradient(160deg, #8FD6F2 0%, #DDF3FB 45%, #A9DFF5 100%)); box-shadow:var(--flx-gb-shadow,0 26px 54px -18px rgba(0,172,228,.38), 0 4px 14px rgba(27,27,60,.06)); }
+.flx-account-funding .flx-in { position:relative; overflow:hidden; border-radius:var(--flx-gb-inner,20px); }
+.flx-account-funding .flx-in.flx-light { background:var(--flx-white,#FFFFFF); }
+.flx-account-funding .flx-in.flx-dark { background:var(--flx-text,#1B1B3C); color:#fff; }
+.flx-account-funding .flx-in.flx-code { background:var(--flx-code-bg,#11132A); color:var(--flx-code-text,#E6E9F5); }
+.flx-account-funding .flx-badge { width:38px; height:38px; border-radius:50%; background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-account-funding .flx-badge svg { width:20px; height:20px; }
+.flx-account-funding .flx-pill { display:inline-flex; align-items:center; font-weight:600; font-size:13px; padding:6px 14px; border-radius:999px; color:#fff; white-space:nowrap; flex:none; }
+.flx-account-funding .flx-pill.flx-danger { background:var(--flx-danger,#E5484D); }
+.flx-account-funding .flx-pill.flx-warning { background:var(--flx-warning,#F2994A); }
+.flx-account-funding .flx-pill.flx-success { background:var(--flx-success,#27AE60); }
+.flx-account-funding .flx-pill.flx-neutral { background:#E8ECF2; color:#4A4F6A; }
+.flx-account-funding .flx-pill.flx-sm { font-size:11px; padding:3px 10px; }
+.flx-account-funding .flx-row { display:flex; align-items:center; gap:14px; height:56px; padding:0 16px; background:var(--flx-surface,#F6F8FB); border-radius:14px; font-size:var(--flx-t-item,15px); font-weight:500; }
+.flx-account-funding .flx-row.flx-sel { background:#E8F6FC; box-shadow:inset 3px 0 0 var(--flx-accent,#00ACE4); }
+.flx-account-funding .flx-ic { width:36px; height:36px; border-radius:50%; background:var(--flx-danger-soft,#FDECEC); color:var(--flx-danger,#E5484D); display:grid; place-items:center; flex:none; }
+.flx-account-funding .flx-ic svg { width:18px; height:18px; }
+.flx-account-funding .flx-ic.flx-accent { background:var(--flx-accent-soft,#E6F6FC); color:var(--flx-accent,#00ACE4); }
+.flx-account-funding .flx-btn { display:flex; align-items:center; justify-content:center; height:48px; border-radius:999px; background:var(--flx-accent,#00ACE4); color:#fff; font-size:15.5px; font-weight:600; }
+.flx-account-funding .flx-btn.flx-off { background:#9ADBF3; }
+.flx-account-funding .flx-btn-o { display:inline-block; background:#fff; border:1px solid #D5DBE5; border-radius:10px; padding:7px 13px; font-size:12.5px; font-weight:500; color:var(--flx-text,#1B1B3C); white-space:nowrap; }
+.flx-account-funding .flx-chip { display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 10px; border-radius:999px; background:#fff; border:1px solid var(--flx-hairline,#E3E7EF); font-size:12px; font-weight:500; white-space:nowrap; }
+.flx-account-funding .flx-chip i { width:8px; height:8px; border-radius:50%; display:block; }
+.flx-account-funding .flx-chip.flx-sel { border-color:var(--flx-accent,#00ACE4); background:#EAF7FD; }
+.flx-account-funding .flx-dots { display:flex; gap:6px; align-items:center; }
+.flx-account-funding .flx-dots i { width:9px; height:9px; border-radius:50%; background:#D9DEE7; display:block; }
+.flx-account-funding .flx-tip { background:var(--flx-text,#1B1B3C); color:#fff; font-size:12.5px; line-height:17px; padding:9px 14px; border-radius:10px; }
+.flx-account-funding .flx-num { position:absolute; right:-9px; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--flx-danger,#E5484D); color:#fff; font-size:11px; font-weight:700; display:grid; place-items:center; z-index:2; box-shadow:0 0 0 2px #fff; }
+.flx-account-funding .flx-flag { position:relative; }
+.flx-account-funding .flx-flag::after { content:""; position:absolute; inset:-3px -6px; border-radius:9px; background:rgba(229,72,77,.035); box-shadow:inset 0 0 0 2px var(--flx-danger,#E5484D); pointer-events:none; }
+.flx-account-funding .flx-spn { width:14px; height:14px; color:#9AA3B5; animation:flx-af-cb-rot 1.4s linear infinite; }
+@keyframes flx-af-cb-rot { to{ transform:rotate(360deg); } }
+.flx-account-funding .flx-shadow-soft { box-shadow:0 1px 4px rgba(27,27,60,.07); }
+.flx-account-funding .flx-floating { box-shadow:0 10px 24px -10px rgba(27,27,60,.28), 0 1px 3px rgba(27,27,60,.08); }
+.flx-account-funding .flx-dz { border:1.5px dashed #B3DDEF; border-radius:18px; background:#F2FAFD; padding:16px 12px; text-align:center; }
+.flx-account-funding .flx-frow { position:relative; display:flex; align-items:center; gap:12px; height:52px; padding:0 16px; background:#fff; border-radius:16px; box-shadow:0 1px 4px rgba(27,27,60,.07); font-size:15px; font-weight:500; }
+.flx-account-funding .flx-tb { display:flex; align-items:center; gap:12px; height:38px; padding:0 16px; }
+.flx-account-funding .flx-tb .flx-dots i { background:#3A3E57; }
+.flx-account-funding .flx-code { font-family:var(--flx-mono,'Flinks Roboto Mono','Roboto Mono',ui-monospace,Menlo,Consolas,monospace); font-size:12px; line-height:21px; padding:6px 12px 0 8px; color:var(--flx-code-text,#E6E9F5); }
+.flx-account-funding .flx-code .flx-ln { display:flex; }
+.flx-account-funding .flx-code .flx-no { width:28px; padding-right:12px; text-align:right; color:var(--flx-code-line,#5B6078); flex:none; user-select:none; }
+.flx-account-funding .flx-code .flx-tx { white-space:pre; }
+.flx-account-funding .flx-code .flx-k { color:var(--flx-code-key,#FFFFFF); }
+.flx-account-funding .flx-code .flx-s { color:var(--flx-code-string,#2DC08E); }
+.flx-account-funding .flx-code .flx-n { color:var(--flx-code-number,#6DD5F5); }
+.flx-account-funding .flx-code .flx-m { color:var(--flx-accent,#00ACE4); font-weight:500; }
+.flx-account-funding .flx-status { display:inline-flex; align-items:center; font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; color:#fff; }
+.flx-account-funding .flx-status.flx-s200 { background:var(--flx-success,#27AE60); }
+.flx-account-funding .flx-status.flx-s202 { background:var(--flx-warning,#F2994A); }
+.flx-account-funding .flx-nt *, .flx-account-funding .flx-rst, .flx-account-funding .flx-rst * { transition:none !important; }
+.flx-account-funding .flx-out { opacity:1 !important; transition-delay:0s !important; }
+.flx-account-funding .flx-pay { left:51px; top:64px; width:300px; z-index:1; }
+.flx-account-funding .flx-pay .flx-in { padding:18px 22px 22px; }
+.flx-account-funding .flx-pay .flx-logo { display:block; height:25px; line-height:0; }
+.flx-account-funding .flx-pay .flx-logo svg { display:block; }
+.flx-account-funding .flx-pay h4 { font-size:17px; line-height:22px; font-weight:600; letter-spacing:-.015em; margin-top:12px; }
+.flx-account-funding .flx-pay .flx-sub { font-size:12px; color:var(--flx-muted,#6B7088); margin-top:2px; }
+.flx-account-funding .flx-pay .flx-amt { font-size:34px; line-height:40px; font-weight:600; letter-spacing:-.02em; margin-top:14px; }
+.flx-account-funding .flx-pay .flx-ver { display:flex; align-items:center; gap:8px; height:38px; padding:0 12px; margin-top:12px; background:#EAF7FD; border-radius:12px; font-size:12.5px; font-weight:500; }
+.flx-account-funding .flx-pay .flx-ver svg { width:16px; height:16px; color:var(--flx-accent,#00ACE4); flex:none; stroke-width:2.4; }
+.flx-account-funding .flx-pay .flx-kv { display:flex; justify-content:space-between; font-size:13px; padding:11px 0; border-bottom:1px solid var(--flx-hairline,#E3E7EF); }
+.flx-account-funding .flx-pay .flx-kv span { color:var(--flx-muted,#6B7088); }
+.flx-account-funding .flx-pay .flx-kv b { font-weight:600; }
+.flx-account-funding .flx-pay .flx-kvs { margin-top:8px; }
+.flx-account-funding .flx-pay .flx-kv:last-child { border-bottom:0; }
+.flx-account-funding .flx-pay .flx-btn { margin-top:12px; height:46px; }
+.flx-account-funding .flx-pl { left:332px; top:132px; width:340px; z-index:2; }
+.flx-account-funding .flx-pl .flx-in { padding:16px 16px 14px; }
+.flx-account-funding .flx-pl .flx-ph { display:flex; justify-content:space-between; align-items:center; font-size:15px; font-weight:600; margin-bottom:10px; }
+.flx-account-funding .flx-pl .flx-ph em { font-style:normal; font-weight:500; font-size:11.5px; color:var(--flx-muted,#6B7088); }
+.flx-account-funding .flx-pl .flx-row { height:52px; padding:0 12px; margin-top:8px; font-size:13.5px; gap:8px; }
+.flx-account-funding .flx-pl .flx-row .flx-nm { flex:1; min-width:0; white-space:nowrap; }
+.flx-account-funding .flx-pl .flx-row .flx-ic { width:30px; height:30px; background:#fff; }
+.flx-account-funding .flx-pl .flx-row b { display:block; font-weight:600; font-size:13.5px; line-height:17px; }
+.flx-account-funding .flx-pl .flx-row em { display:block; font-style:normal; font-size:11px; color:var(--flx-muted,#6B7088); line-height:14px; font-weight:400; }
+.flx-account-funding .flx-pl .flx-row .flx-a { font-weight:600; font-size:13.5px; }
+.flx-account-funding .flx-pay { transition:transform .95s cubic-bezier(.4,0,.2,1); }
+.flx-account-funding .flx-s1 .flx-pay, .flx-account-funding .flx-s2 .flx-pay { transform:translateX(159px); }
+.flx-account-funding .flx-pl { transition:transform .95s cubic-bezier(.4,0,.2,1); }
+.flx-account-funding .flx-s1 .flx-pl, .flx-account-funding .flx-s2 .flx-pl { transform:translateX(400px); }
+.flx-account-funding .flx-pl.flx-out { transform:translateX(400px) !important; opacity:1 !important; }
+.flx-account-funding .flx-pl .flx-row, .flx-account-funding .flx-pl .flx-ph { transition:opacity .4s ease, transform .4s ease; transition-delay:0s; }
+.flx-account-funding .flx-s1 .flx-pl .flx-row, .flx-account-funding .flx-s2 .flx-pl .flx-row { opacity:0; transform:translateX(10px); }
+.flx-account-funding .flx-s3 .flx-pl .flx-row { transition-delay:calc(var(--flx-i) * .16s + .7s); }
+.flx-account-funding .flx-pl.flx-out .flx-row { opacity:1 !important; transform:none !important; transition:none !important; }
+.flx-account-funding .flx-pill { transition:background .35s ease, color .35s ease; }
+.flx-account-funding .flx-btn { transition:transform .15s ease; }
+.flx-account-funding .flx-cursor { position:absolute; left:0; top:0; width:22px; height:22px; z-index:30; opacity:0; pointer-events:none; transform:translate(660px,470px); transition:transform .85s cubic-bezier(.45,0,.2,1), opacity .3s; filter:drop-shadow(0 2px 3px rgba(27,27,60,.3)); }
+.flx-account-funding .flx-pr { transform:scale(.96) !important; }
