@@ -1,0 +1,64 @@
+/*!
+ * Flinks – "Fraud scan" illustration. Production stylesheet: every rule is scoped under .flx-fraud-scan.
+ * Design frame 720 × 500 px, scaled as a whole by animation.js (--flx-s).
+ * Config custom properties: --flx-width, --flx-max-width, --flx-height, --flx-bg, --flx-font-family,
+ *   --flx-text, --flx-muted, --flx-accent, --flx-accent-soft, --flx-accent-dim, --flx-red, --flx-red-soft
+ */
+.flx-fraud-scan {
+  all: initial; --flx-s: 1; --flx-tx: 0px; --flx-ty: 0px;
+  display: block; position: relative; box-sizing: border-box;
+  width: var(--flx-width, 100%); max-width: var(--flx-max-width, 720px); height: var(--flx-height, auto);
+  aspect-ratio: 720 / 500; overflow: hidden; contain: layout paint style;
+  color: var(--flx-text, #1B1B3C);
+  font-family: var(--flx-font-family, 'Flinks Inter', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
+  line-height: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+}
+.flx-fraud-scan:not([data-flx-ready]) { visibility: hidden; }
+/* Defensive baseline: neutralises generic host rules ("* {letter-spacing}", "div {border}", "span {display:block}" …).
+   Component rules below have higher specificity and re-apply the real values. */
+.flx-fraud-scan *, .flx-fraud-scan *::before, .flx-fraud-scan *::after {
+  box-sizing: border-box; margin: 0; padding: 0; border: 0 solid transparent; outline: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; letter-spacing: inherit; word-spacing: normal; text-transform: none; text-shadow: none; text-decoration: none;
+  transition: none; animation: none;
+}
+.flx-fraud-scan div, .flx-fraud-scan p { display: block; }
+.flx-fraud-scan span, .flx-fraud-scan strong, .flx-fraud-scan em, .flx-fraud-scan b { display: inline; }
+.flx-fraud-scan b, .flx-fraud-scan strong { font-weight: 700; }   /* restore UA emphasis removed by the reset (component rules override where needed) */
+.flx-fraud-scan em { font-style: italic; }
+.flx-fraud-scan svg { display: block; max-width: none; max-height: none; }
+.flx-fraud-scan .flx-scaler { position: absolute; left: 0; top: 0; width: 720px; height: 500px; transform-origin: 0 0; transform: translate(var(--flx-tx), var(--flx-ty)) scale(var(--flx-s)); }
+.flx-fraud-scan .flx-stage { position: relative; width: 720px; height: 500px; border-radius: 24px; overflow: hidden; color: var(--flx-text, #1B1B3C); background: var(--flx-bg, #EAFAFF); }
+.flx-fraud-scan.is-static *, .flx-fraud-scan.is-static *::before { transition: none !important; animation: none !important; }
+
+/* ---- component ---- */
+.flx-fraud-scan svg.flx-i { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.flx-fraud-scan .flx-gb { padding:4px; border-radius:24px; background:linear-gradient(160deg,#8FD6F2 0%,#DDF3FB 45%,#A9DFF5 100%); box-shadow:0 26px 54px -18px rgba(0,172,228,.38), 0 4px 14px rgba(27,27,60,.06); }
+.flx-fraud-scan .flx-in { border-radius:20px; overflow:hidden; position:relative; }
+.flx-fraud-scan .flx-in.flx-light { background:#fff; }
+.flx-fraud-scan .flx-in.flx-dark { background:#1B1B3C; color:#fff; }
+.flx-fraud-scan .flx-pill { display:inline-flex; align-items:center; background:var(--flx-red,#E5484D); color:#fff; font-weight:600; border-radius:999px; white-space:nowrap; }
+.flx-fraud-scan .flx-badge { width:38px; height:38px; border-radius:50%; background:#E6F6FC; color:var(--flx-accent,#00ACE4); display:grid; place-items:center; flex:none; }
+.flx-fraud-scan .flx-badge svg { width:20px; height:20px; }
+.flx-fraud-scan .flx-shield { width:18px; height:18px; color:var(--flx-accent,#00ACE4); flex:none; }
+.flx-fraud-scan .flx-card { position:absolute; left:130px; top:88px; width:460px; }
+.flx-fraud-scan .flx-card .flx-in { padding:22px 24px 22px; }
+.flx-fraud-scan .flx-hd { display:flex; align-items:center; gap:12px; }
+.flx-fraud-scan .flx-name { flex:1; font-size:15px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.flx-fraud-scan .flx-pill { font-size:13px; padding:6px 14px; }
+.flx-fraud-scan .flx-rows { display:flex; flex-direction:column; gap:8px; margin-top:18px; }
+.flx-fraud-scan .flx-ind { display:flex; align-items:center; gap:14px; height:56px; padding:0 16px; background:#F6F8FB; border-radius:14px; font-size:15.5px; font-weight:500; }
+.flx-fraud-scan .flx-ic { width:36px; height:36px; border-radius:50%; background:var(--flx-red-soft,#FDECEC); color:var(--flx-red,#E5484D); display:grid; place-items:center; flex:none; }
+.flx-fraud-scan .flx-ic svg { width:18px; height:18px; }
+.flx-fraud-scan .flx-ft { display:flex; align-items:center; gap:10px; margin-top:18px; font-size:12.5px; color:var(--flx-muted,#6B7088); }
+.flx-fraud-scan .flx-stage .flx-ind, .flx-fraud-scan .flx-stage .flx-ft { transition:opacity .5s ease, transform .5s ease; }
+.flx-fraud-scan .flx-stage .flx-pill { transition:background .35s ease, color .35s ease; }
+.flx-fraud-scan .flx-stage:not(.flx-r1) .flx-ind:nth-child(1), .flx-fraud-scan .flx-stage:not(.flx-r2) .flx-ind:nth-child(2), .flx-fraud-scan .flx-stage:not(.flx-r3) .flx-ind:nth-child(3) { opacity:0; transform:translateY(12px); }
+.flx-fraud-scan .flx-stage:not(.flx-done) .flx-pill { background:#E8ECF2 !important; color:#4A4F6A !important; }
+.flx-fraud-scan .flx-stage:not(.flx-done) .flx-ft { opacity:.45; }
+.flx-fraud-scan .flx-pill { min-width:var(--flx-pw,0px); justify-content:center; }
+.flx-fraud-scan .flx-name { white-space:nowrap; }
+.flx-fraud-scan .flx-spn2 { width:12px;height:12px;border:2px solid #9AA3B5;border-top-color:transparent;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:-2px;animation:flx-fs-cb-rot 1s linear infinite; }
+.flx-fraud-scan .flx-stage.flx-done .flx-pill { min-width:var(--flx-pw,0px); justify-content:center; }
+.flx-fraud-scan .flx-name { white-space:nowrap; }
+.flx-fraud-scan .flx-spn2 { display:none; }
+@keyframes flx-fs-cb-rot { to{ transform:rotate(360deg);} }

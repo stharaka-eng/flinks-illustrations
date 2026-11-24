@@ -6,7 +6,7 @@
 (function (global) {
   'use strict';
 
-  var FRAME_W = 720, FRAME_H = 500;
+  var DEFAULT_FRAME = [720, 500];
   var registry = global.FlinksAnimations = global.FlinksAnimations || {};
   var SCRIPT_BASE = (function () {
     try { var s = document.currentScript && document.currentScript.src; return s ? s.slice(0, s.lastIndexOf('/') + 1) : ''; }
@@ -47,6 +47,7 @@
     if (o.font !== 'none') ensureFont(o.fontBase, fonts);
     if (o.respectRM) root.setAttribute('data-flx-respect-rm', '');
 
+    var FRAME_W = (def.frame || DEFAULT_FRAME)[0], FRAME_H = (def.frame || DEFAULT_FRAME)[1];
     var q = function (sel) { return root.querySelector(sel); };
     var gen = 0, timers = [], rafs = [], mode = '', destroyed = false;
     var scale = 1, inView = true, pageVisible = !document.hidden, playing = o.autoplay, ready = false;
@@ -140,60 +141,19 @@
   };
 })(window);
 
-/* ===== Flinks · Fraud API (card 05) — animation logic. Sequence/timings 1:1 with original/a5.html ===== */
+/* ===== Flinks · Fraud scan (Document Processing & Fraud Detection, card 02) — animation logic. Sequence/timings 1:1 with original-docfraud/a2.html ===== */
 (function () {
-  var stage, c1, c2, poll, seed;
-  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }   // seeded: identical typing rhythm every loop
-  function prep(win) {
-    var chars = [].slice.call(win.querySelectorAll('.flx-ch')), w = [], tot = 0;
-    chars.forEach(function (c) { c._ln = c.closest('.flx-ln'); });
-    chars.forEach(function (c, i) { var x = 0.55 + rnd() * 1.0; if (c.textContent === ' ') x *= 0.45; var nx = chars[i + 1]; if (nx && nx._ln !== c._ln) x += 3; w.push(x); tot += x; });
-    win._chars = chars; win._w = w; win._tot = tot; win._cur = document.createElement('span'); win._cur.className = 'flx-cur';
-  }
-  function setup(c) {
-    stage = c.q('.flx-stage'); c1 = c.q('[data-flx="c1"]'); c2 = c.q('[data-flx="c2"]'); poll = c.q('[data-flx="poll"]');
-    seed = 7; prep(c1); prep(c2);
-  }
-  function setCursor(win, idx) { if (idx < 0) { var tx = win.querySelector('.flx-tx'); tx.insertBefore(win._cur, tx.firstChild); } else win._chars[idx].after(win._cur); }
-  function typeIn(c, win, T) {
-    return new Promise(function (res) {
-      var chars = win._chars, k = win._tot / T, cum = [], a = 0, i = 0, t0 = null;
-      win._w.forEach(function (x) { a += x / k; cum.push(a); }); setCursor(win, -1);
-      function frame(ts) {
-        if (t0 === null) t0 = ts; var el = ts - t0;
-        while (i < chars.length && cum[i] <= el) { chars[i].classList.add('flx-on'); chars[i]._ln.classList.add('flx-on'); i++; }
-        setCursor(win, i - 1);
-        if (i < chars.length) c.raf(frame); else { win._cur.remove(); res(); }
-      }
-      c.raf(frame);
-    });
-  }
-  function clearAll(win) { win._chars.forEach(function (c) { c.classList.remove('flx-on'); }); win.querySelectorAll('.flx-ln').forEach(function (l) { l.classList.remove('flx-on'); }); win._cur.remove(); }
-  function reset() {
-    stage.className = 'flx-stage flx-boot';
-    ['flx-done', 'flx-stop', 'flx-in', 'flx-out', 'flx-rst'].forEach(function (k) { c1.classList.remove(k); c2.classList.remove(k); });
-    poll.classList.remove('flx-show', 'flx-stop'); clearAll(c1); clearAll(c2);
-  }
-  function final() {
-    reset();
-    [c1, c2].forEach(function (w) { w._chars.forEach(function (c) { c.classList.add('flx-on'); }); w.querySelectorAll('.flx-ln').forEach(function (l) { l.classList.add('flx-on'); }); });
-    stage.classList.remove('flx-boot'); stage.classList.add('flx-p2'); c1.classList.add('flx-done', 'flx-stop'); c2.classList.add('flx-in', 'flx-done'); poll.classList.add('flx-show', 'flx-stop');
-  }
+  var st, pt;
+  function setup(c) { st = c.q('.flx-stage'); pt = c.q('.flx-pt'); }
+  function reset() { st.className = 'flx-stage'; pt.textContent = 'Scanning'; }
+  function final() { st.className = 'flx-stage flx-r1 flx-r2 flx-r3 flx-done'; pt.textContent = 'High Risk'; }
   async function run(c) {
-    stage.classList.remove('flx-boot'); await c.sleep(900);
     for (;;) {
-      await typeIn(c, c1, 4000);                                                                 // 01 · 202 response types out
-      await c.sleep(250); c1.classList.add('flx-done'); await c.sleep(550); poll.classList.add('flx-show'); await c.sleep(1600);
-      stage.classList.add('flx-p2'); c1.classList.add('flx-stop'); poll.classList.add('flx-stop'); c2.classList.add('flx-in'); await c.sleep(1300);   // 02 · 200 window in
-      await typeIn(c, c2, 4000); await c.sleep(250); c2.classList.add('flx-done'); await c.sleep(2800);
-      c2.classList.add('flx-out'); stage.classList.remove('flx-p2'); await c.sleep(1000);       // 200 slides away, first returns to centre
-      c2.classList.add('flx-rst'); c2.classList.remove('flx-in', 'flx-out', 'flx-done'); clearAll(c2);
-      await new Promise(function (r) { c.raf(function () { c.raf(r); }); }); c2.classList.remove('flx-rst');   // snap without transition (replaces forced reflow)
-      c1.classList.remove('flx-done', 'flx-stop'); poll.classList.remove('flx-show', 'flx-stop'); clearAll(c1); await c.sleep(500);   // code clears instantly, start again
+      pt.textContent = 'Scanning'; await c.sleep(1400);
+      st.classList.add('flx-r1'); await c.sleep(750); st.classList.add('flx-r2'); await c.sleep(750); st.classList.add('flx-r3'); await c.sleep(800);
+      pt.textContent = 'High Risk'; st.classList.add('flx-done'); await c.sleep(4200);
+      st.classList.remove('flx-done', 'flx-r3', 'flx-r2', 'flx-r1'); pt.textContent = 'Scanning'; await c.sleep(900);
     }
   }
-  window.FlinksAnimations.register('fraud-api', 'flx-fraud-api', {
-    fonts: [['Flinks Inter', 400, 'inter-latin-400-normal'], ['Flinks Inter', 500, 'inter-latin-500-normal'], ['Flinks Inter', 600, 'inter-latin-600-normal'],
-            ['Flinks Inter', 700, 'inter-latin-700-normal'], ['Flinks Roboto Mono', 400, 'roboto-mono-latin-400-normal'], ['Flinks Roboto Mono', 500, 'roboto-mono-latin-500-normal']],
-    setup: setup, reset: reset, final: final, run: run });
+  window.FlinksAnimations.register('fraud-scan', 'flx-fraud-scan', { setup: setup, reset: reset, final: final, run: run });
 })();
